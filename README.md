@@ -47,8 +47,7 @@ Disponíveis na biblioteca fornecida:
 - Impressora fiscal compatível com a DLL
 
 - Cabo USB ou interface serial
-
-[Espaço para imagem da impressora]
+<img width="586" height="782" alt="image" src="https://github.com/user-attachments/assets/594087d0-a28c-4c7e-82cd-ad5c7eb731da" />
 
 ---
 
@@ -203,8 +202,6 @@ public interface ImpressoraDLL extends Library {
     int ImprimeXMLCancelamentoSAT(String dados, String assQRCode, int param);
 }
 ```
-[Espaço para imagem do fluxo do código]
-
 **Principais Métodos**
 | Método               | Função                               |
 |----------------------|---------------------------------------|
