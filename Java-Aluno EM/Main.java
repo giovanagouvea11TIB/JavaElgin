@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.io.FileInputStream;
 
-
-
-
 import static javax.swing.text.html.HTML.Tag.EM;
 
 public class Main {
@@ -23,7 +20,7 @@ public class Main {
                 ImpressoraDLL.class
         );
 
-        //variaveis das funcoes com seus parametros
+        //Variáveis das funções com seus parâmetros
         int AbreConexaoImpressora(int tipo, String modelo, String conexao, int param);
         int FechaConexaoImpressora();
         int ImpressaoTexto(String dados, int posicao, int estilo, int tamanho);
@@ -44,7 +41,7 @@ public class Main {
         int ImprimeXMLSAT(String dados, int param);
         int ImprimeXMLCancelamentoSAT(String dados, String assQRCode, int param);
     }
-    //definindo essas variáveis globais para guardar os dados da impressora:
+    //Definindo as variáveis globais para guardar os dados da impressora:
     private static boolean conexaoAberta = false;
     private static int tipo;
     private static String modelo;
@@ -57,7 +54,7 @@ public class Main {
         return scanner.nextLine();
     }
 
-    // Solicita e armazena os dados de configuração da conexão com a impressora e envia para a função abrirConexao
+    // Solicita e armazena os dados de configuração da conexão com a impressora e envia para a função "abrirConexao"
     public static void configurarConexao() {
         if (!conexaoAberta) {
             Scanner scanner = new Scanner(System.in);
@@ -70,10 +67,11 @@ public class Main {
             conexao = scanner.nextLine();
             System.out.println("Digite o parâmetro adicional (ex: 0 para padrão): ");
             parametro = scanner.nextInt();
+            System.out.println("Dados Salvos com Sucesso! ");
         }
     }
 
-    //abre conexão com a impressora para que as outras funções funcione
+    //Abre conexão com a impressora para que as outras funções funcionem
     public static void abrirConexao () {
         if (!conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.AbreConexaoImpressora(tipo, modelo, conexao, parametro);
@@ -88,12 +86,12 @@ public class Main {
         }
     }
 
-    //impressao do texto "Teste de impressao" e avaço de 5 linhas
+    //Impressão do texto "Teste de impressao" e avanço de 3 linhas
     public static void ImpressaoTexto () {
         if (conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.ImpressaoTexto("Teste de impressao", 1, 4, 0);
             if (retorno == 0) {
-                ImpressoraDLL.INSTANCE.AvancaPapel(5);
+                ImpressoraDLL.INSTANCE.AvancaPapel(3);
                 System.out.println("Impressão realizada com sucesso!");
             } else {
                 System.out.println("Erro ao abrir conexao. Codigo de erro: " + retorno);
@@ -103,10 +101,10 @@ public class Main {
         }
     }
 
-    // Realiza o corte da folha avançando 5 linhas
+    // Realiza o corte da folha, avançando 3 linhas
     public static void Corte () {
         if (conexaoAberta) {
-            int retorno = ImpressoraDLL.INSTANCE.Corte(5);
+            int retorno = ImpressoraDLL.INSTANCE.Corte(3);
             if (retorno == 0) {
                 System.out.println("Corte realizado com sucesso!");
             } else {
@@ -118,12 +116,12 @@ public class Main {
 
     }
 
-    //Realiza a impressão do QRCode e avança 5 linhas
+    //Realiza a impressão do QRCode e avança 3 linhas
     public static void ImpressaoQRCode() {
         if (conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.ImpressaoQRCode("Teste de QRCode", 6, 4);
             if (retorno == 0) {
-                ImpressoraDLL.INSTANCE.AvancaPapel(5);
+                ImpressoraDLL.INSTANCE.AvancaPapel(3);
                 System.out.println("QR Code impresso com sucesso!");
             } else {
                 System.out.println("Erro ao imprimir QR Code. Código: " + retorno);
@@ -133,12 +131,12 @@ public class Main {
         }
     }
 
-    //Realiza a impressão do Código de Barras e avança 5 linhas
+    //Realiza a impressão do Código de Barras e avança 3 linhas
     public static void ImpressaoCodigoBarras() {
         if (conexaoAberta) {
             int retorno = ImpressoraDLL.INSTANCE.ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
             if (retorno == 0) {
-                ImpressoraDLL.INSTANCE.AvancaPapel(5);
+                ImpressoraDLL.INSTANCE.AvancaPapel(3);
                 System.out.println("Código de barras impresso com sucesso!");
             } else {
                 System.out.println("Erro ao imprimir código de barras. Código: " + retorno);
@@ -148,10 +146,10 @@ public class Main {
         }
     }
 
-    //Avança o papel por DUAS linhas
+    //Avança o papel por 3 linhas
     public static void AvancaPapel() {
         if (conexaoAberta) {
-            int retorno = ImpressoraDLL.INSTANCE.AvancaPapel(2);
+            int retorno = ImpressoraDLL.INSTANCE.AvancaPapel(3);
             if (retorno == 0) {
                 System.out.println("Papel avançado com sucesso!");
             } else {
@@ -258,7 +256,7 @@ public class Main {
             System.out.println("**************** MENU IMPRESSORA *******************");
             System.out.println("*************************************************\n");
 
-            //Opcoes do menu para o usuario escolher
+            //Opcoes do menu para o usuário escolher
             System.out.println("1 - Configurar Conexao");
             System.out.println("2 - Abrir Conexao");
             System.out.println("3 - Impressao Texto");
@@ -279,7 +277,7 @@ public class Main {
                 break;
             }
 
-            //chamando as funções aqui
+            //Chamamos as funções aqui
             switch (escolha) {
                 case "1":
                     configurarConexao();
@@ -323,7 +321,6 @@ public class Main {
         scanner.close();//Fecha o Scanner
     }
 
-    //
     private static String lerArquivoComoString (String path) throws IOException {
         FileInputStream fis = new FileInputStream(path);
         byte[] data = fis.readAllBytes();
@@ -331,14 +328,3 @@ public class Main {
         return new String(data, StandardCharsets.UTF_8);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
