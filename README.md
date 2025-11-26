@@ -1,6 +1,11 @@
 ## 🖨️ Sistema de Impressão Fiscal – Projeto Java
 
-**Integrantes do grupo:** Catarina Nascimento, Davi Evangelista, Giovana Gouvea, Heloisa Monteiro e Luiz Barbosa
+**Integrantes do grupo:** 
+- Catarina Nascimento
+- Davi Evangelista
+- Giovana Gouvea
+- Heloisa Monteiro
+- Luiz Henrique Barbosa
 
 **Professor:** Richard Spanhol
 
